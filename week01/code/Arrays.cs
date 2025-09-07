@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 public static class Arrays
 {
     /// <summary>
@@ -13,7 +15,21 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // My Plan:
+        // 1. I Create an array called "result" with length equal to 'length'.
+        // 2. I use a for-loop that goes from i = 0 to i = length - 1.
+        // 3. Then for each index i, I calculate number * (i+1) to get the multiple.
+        // 4. Store the multiple inside result[i].
+        // 5. After the loop finishes, return the array.
+
+        double[] result = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -29,5 +45,27 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // My Plan:
+        // 1. I Get the total number of items in the list (n).
+        // 2. If the list is empty, return right away.
+        // 3. Find k = amount % n (so it works even if amount == n).
+        // 4. If k == 0, nothing changes, so return.
+        // 5. Then take the last k elements and the first n-k elements using GetRange.
+        // 6. Clear the original list.
+        // 7. Add the last k elements first, then add the first n-k elements.
+
+        int n = data.Count;
+        if (n == 0) return;
+
+        int k = amount % n;
+        if (k == 0) return;
+
+        List<int> right = data.GetRange(n - k, k);
+        List<int> left = data.GetRange(0, n - k);
+
+        data.Clear();
+        data.AddRange(right);
+        data.AddRange(left);
     }
 }
